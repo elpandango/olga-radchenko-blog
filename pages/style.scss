@@ -1,0 +1,123 @@
+.index-page {
+  .columns {
+    display: flex;
+
+    @media only screen and (max-width: 991px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .column {
+    width: 50%;
+
+    @media only screen and (max-width: 991px) {
+      width: 100%;
+    }
+  }
+
+  .column.text {
+    padding-right: 32px;
+
+    @media only screen and (max-width: 991px) {
+      //order: 2;
+      padding: 0;
+    }
+  }
+
+  .column.image {
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
+
+    img {
+      height: 700px;
+
+      @media only screen and (max-width: 1100px) {
+        height: 600px;
+      }
+
+      @media only screen and (max-width: 991px) {
+        height: 700px;
+      }
+    }
+  }
+
+  .main {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    background-image: url('~/assets/images/bg-grad.svg');
+    background-position: 60vw 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @media only screen and (max-width: 991px) {
+      background-image: none;
+      align-items: flex-start;
+      padding-top: 35px;
+      min-height: auto;
+    }
+  }
+
+  .posts {
+    padding-top: 120px;
+  }
+
+  .author-block {
+    .author-name {
+      line-height: 80px;
+      font-size: 64px;
+      margin-bottom: 24px;
+      font-weight: 700;
+
+      @media only screen and (max-width: 767px) {
+        font-size: 46px;
+        line-height: 60px;
+      }
+    }
+
+    .author-position {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .author-subtitle {
+      font-size: 18px;
+      text-decoration: underline;
+    }
+
+    ul {
+      li {
+        list-style: circle;
+        margin-bottom: 6px;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .billet-block {
+    display: flex;
+    flex-wrap: wrap;
+
+
+    .billet-wrap {
+      width: 30%;
+
+      @media only screen and (max-width: 1024px) {
+        width: 50%;
+      }
+
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .service-list {
+    padding-left: 25px;
+  }
+}
