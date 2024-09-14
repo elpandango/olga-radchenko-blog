@@ -65,5 +65,4 @@ onMounted(() => {
 <style
  scoped
  lang="scss">
-
 </style>
