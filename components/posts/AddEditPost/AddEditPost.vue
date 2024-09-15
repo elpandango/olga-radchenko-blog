@@ -81,11 +81,9 @@
 import {computed, onMounted, reactive, ref} from 'vue';
 import {QuillEditor} from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-// import {useStorePosts} from "@/stores/storePosts";
-import {useRoute} from "vue-router";
+import {useStorePosts} from "~/stores/storePosts";
 
 const apiUrl = import.meta.env.VITE_APP_API_URL;
-const route = useRoute();
 const emit = defineEmits(['save-post']);
 const formInputData = reactive({
   title: '',
@@ -123,19 +121,19 @@ const editorChangeHandler = (editorContent: any) => {
   formInputData.content = editorContent;
 };
 
-// const storePosts = useStorePosts();
-
 onMounted(() => {
-  if (route.name === 'edit-post') {
-    // const currentPost = storePosts.getCurrentPost;
-    // const { title, content, imageUrl } = currentPost;
-    //
-    // formInputData.title = title;
-    // formInputData.content = content;
-    // formInputData.image = imageUrl;
-    // thumbnail.value = imageUrl;
-    // imageThumbLoaded.value = false;
-  }
+  const storePosts = useStorePosts();
+  const currentPost = storePosts.getCurrentPost;
+  const {title, content, imageUrl} = currentPost;
+
+  console.log('currentPost: ', currentPost);
+
+  formInputData.title = title;
+  formInputData.content = content;
+  formInputData.image = imageUrl;
+  thumbnail.value = imageUrl;
+  imageThumbLoaded.value = false;
+
 });
 
 const computedUrl = computed(() => {

@@ -1,13 +1,11 @@
 <template>
   <div class="add-edit-post py-6">
     <h1 class="text-3xl mb-4">Add New Post</h1>
-
-    <AddEditPost @save-post="savePostHandler"/>
+    <AddEditPost @save-post="handleSaveClicked"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import {reactive, ref} from "vue";
 import AddEditPost from "~/components/posts/AddEditPost/AddEditPost.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 
@@ -17,22 +15,22 @@ definePageMeta({
 
 const router = useRouter();
 
-const changesCounter = ref(0);
-let newComponent = reactive({});
+interface PostData {
+  title: string;
+  content: string;
+  image: File | null;
+}
 
-const updateFormHandler = (data) => {
-  newComponent = {...data};
-  changesCounter.value++;
-};
+const postRepository = repositoryFactory.get('Post');
 
-const savePostHandler = async (data: any) => {
+const handleSaveClicked = async (data: PostData) => {
   const formData = new FormData();
   formData.append('title', data.title);
   formData.append('content', data.content);
   formData.append('image', data.image);
 
   try {
-    const {data} = await repositoryFactory.get('Post').add(formData);
+    const {data} = await postRepository.add(formData);
     if (!data?.status) {
       await router.push('/admin/all-posts');
     }

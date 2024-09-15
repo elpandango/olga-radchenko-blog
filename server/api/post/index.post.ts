@@ -29,8 +29,6 @@ export default defineEventHandler(async (event) => {
       imageUrl = 'images/empty-image.png';
     } else {
       const file = files.image[0] as formidable.File;
-      // imageUrl = file.filepath.replace('public/', '');
-      // imageUrl = file.filepath.replace(`${path.join(process.cwd(), 'public/uploads')}/`, '');
       imageUrl = `uploads/${path.basename(file.filepath)}`;
     }
 
@@ -40,8 +38,6 @@ export default defineEventHandler(async (event) => {
       imageUrl,
       // creator: 'some-user-id', //TODO Заменить на реальный ID пользователя
     });
-
-    console.log('Post object:', post);
 
     await post.save();
 

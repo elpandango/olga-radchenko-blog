@@ -3,9 +3,8 @@ import {PostModel} from "~/server/models/postModel";
 import formidable from 'formidable';
 import path from 'path';
 
-export const updateSinglePost = defineEventHandler(async (event) => {
-  const { id } = event.context.params;
-  console.log('id: ', id);
+export default defineEventHandler(async (event) => {
+  const {id} = event.context.params;
 
   try {
     const form = formidable({
@@ -25,28 +24,19 @@ export const updateSinglePost = defineEventHandler(async (event) => {
     });
 
     const post = await PostModel.findById(id);
-
-    console.log('post: ', post);
-
     const title = fields?.title as string;
     const content = fields?.content as string;
-    let imageUrl: string;
+    let imageUrl: string = post.imageUrl || 'images/empty-image.png';
 
-    if (!files?.image) {
-      imageUrl = 'images/empty-image.png';
-    } else {
+    if (files?.image) {
       const file = files.image[0] as formidable.File;
       imageUrl = `uploads/${path.basename(file.filepath)}`;
     }
 
-    console.log('title, content, imageUrl: ', title, content, imageUrl);
-
     post.title = title[0];
     post.content = content[0];
     post.imageUrl = imageUrl;
-    const result = await post!.save();
-
-    // console.log('Post object:', post);
+    await post!.save();
 
     return {
       status: 201,

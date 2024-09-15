@@ -9,7 +9,7 @@
     </template>
     <template v-else-if="isLoaded && !filteredPosts?.length">
       <div class="">
-        No components here yet...
+        No posts here yet...
       </div>
     </template>
     <template v-else>
@@ -20,10 +20,9 @@
 
 <script setup>
 import {computed, onMounted, ref} from "vue";
-import Preloader from "~/components/admin/Preloader/index.vue";
+import Preloader from "~/components/Preloader/index.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
-import BlogPost from "~/components/admin/Blocks/BlogPost.vue";
-// import {getUserFromToken} from "~/server/utils/auth";
+import BlogPost from "~/components/posts/BlogPost/BlogPost.vue";
 
 definePageMeta({
   layout: 'admin',
@@ -39,25 +38,13 @@ const posts = ref([]);
 const user = ref({});
 const searchInputValue = ref('');
 const isLoaded = ref(false);
-// const componentTypes = ref([]);
-// const selectedOption = ref('accordion');
 
 isLoaded.value = false;
 
 const fetchUser = async () => {
   try {
     const userEmail = localStorage.getItem('userEmail');
-    const token = localStorage.getItem('token');
-
-    console.log(userEmail);
-    console.log(token);
-
-    // getUserFromToken(token);
-
     const data = await repositoryFactory.get('User').getUser(userEmail);
-
-    console.log('user data: ', data);
-
     user.value = data?.user || {};
   } catch (err) {
     console.log(err);
@@ -70,7 +57,7 @@ const fetchPosts = async () => {
     posts.value = data?.posts || [];
     isLoaded.value = true;
 
-    console.log('posts: ', posts.value);
+    console.log('data?.posts: ', data?.posts);
   } catch (err) {
     console.log(err);
   }

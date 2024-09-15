@@ -55,5 +55,5 @@ const date = useFormatDate(props.createdAt);
 
 </script>
 
-<style lang="scss" src="./style.scss">
+<style lang="scss" src="./styles.scss">
 </style>
