@@ -14,14 +14,10 @@ export default {
             body: payload,
         });
     },
-    async update(id: string, payload: any,) {
-        return await $fetch(`/api/post/${id}`, {
-            method: 'put',
-            body: {
-                title: payload.title,
-                content: payload.content,
-                image: payload.image,
-            }
+    async editPost(id: string, payload: FormData) {
+        return await $fetch(`/api/edit-post/${id}`, {
+            method: 'PUT',
+            body: payload,
         });
     },
     async delete(id: string) {
