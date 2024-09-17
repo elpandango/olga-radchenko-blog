@@ -6,6 +6,10 @@
        :key="post.id"
        :post="post"
        @delete-clicked="handlePostDelete"/>
+
+      <Pagination v-if="postsResponse.lastPage > 1"
+                  @page-changed="pageChangeHandler"
+                  :data="postsResponse"/>
     </template>
     <template v-else-if="isLoaded && !filteredPosts?.length">
       <div class="">
@@ -42,7 +46,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
 import Preloader from "~/components/Preloader/index.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
@@ -62,11 +66,10 @@ definePageMeta({
 const isModalOpen = ref(false);
 const postIdToDelete = ref('');
 const posts = ref([]);
+const postsResponse = ref({});
 const user = ref({});
 const searchInputValue = ref('');
 const isLoaded = ref(false);
-
-isLoaded.value = false;
 
 const postRepository = repositoryFactory.get('Post');
 const userRepository = repositoryFactory.get('User');
@@ -81,9 +84,11 @@ const fetchUser = async () => {
   }
 };
 
-const fetchPosts = async () => {
+const fetchPosts = async (page) => {
   try {
-    const data = await postRepository.get();
+    isLoaded.value = false;
+    const data = await postRepository.get(page);
+    postsResponse.value = {...data};
     posts.value = data?.posts || [];
     isLoaded.value = true;
 
@@ -118,6 +123,10 @@ const handleDeleteConfirmed = async () => {
   await fetchPosts();
   isModalOpen.value = false;
 };
+
+const pageChangeHandler = async (page: number) => {
+  await fetchPosts(`page=${page}`);
+}
 </script>
 
 

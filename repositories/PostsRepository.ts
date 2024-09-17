@@ -3,7 +3,7 @@ export default {
         if (!query) {
             return $fetch('/api/get-posts');
         }
-        return $fetch(`/api/get-posts?query=${query}`);
+        return $fetch(`/api/get-posts?${query}`);
     },
     async getPost(id: string) {
         return await $fetch(`/api/post/${id}`);
