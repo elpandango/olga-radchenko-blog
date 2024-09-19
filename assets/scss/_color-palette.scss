@@ -1,0 +1,53 @@
+// Colors
+.is-text-link {
+  color: var(--primary-default);
+}
+
+.is-text-error {
+  color: var(--red-100);
+}
+
+.is-text-info {
+  color: var(--blue-100);
+}
+
+.is-text-warning {
+  color: var(--yellow-100);
+}
+
+.is-text-success {
+  color: var(--green-100);
+}
+
+.is-text-gray {
+  color: var(--text-80);
+}
+
+.is-text-white {
+  color: var(--neutral-0);
+}
+
+//Bg-colors
+.bg-link {
+  background-color: var(--primary-default);
+}
+
+.bg-error {
+  background-color: var(--red-100);
+}
+
+.bg-info {
+  background-color: var(--blue-100);
+}
+
+.bg-warning {
+  background-color: var(--yellow-100);
+}
+
+.bg-success {
+  background-color: var(--green-100);
+}
+
+.bg-gray {
+  background-color: var(--text-80);
+}
