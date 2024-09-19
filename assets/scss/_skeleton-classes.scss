@@ -1,0 +1,63 @@
+.skeleton-box {
+  color: transparent !important;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  border-radius: 4px;
+
+  img {
+    visibility: hidden;
+  }
+}
+
+.skeleton-box-short {
+  width: 30%;
+  color: transparent !important;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  border-radius: 4px;
+
+  img {
+    visibility: hidden;
+  }
+}
+
+.skeleton-block {
+  width: 100%;
+  min-height: 150px;
+  color: transparent !important;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-box-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  & > div {
+    width: 100%;
+    min-height: 14px;
+    color: transparent !important;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+    border-radius: 4px;
+  }
+
+  & > div:last-child {
+    width: 35%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

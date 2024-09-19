@@ -1,0 +1,26 @@
+.image {
+  &.size-16x16 {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.size-32x32 {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.size-64x64 {
+    width: 64px;
+    height: 64px;
+  }
+
+  &.size-128x128 {
+    width: 128px;
+    height: 128px;
+  }
+
+  &.size-256x256 {
+    width: 256px;
+    height: 256px;
+  }
+}
