@@ -4,7 +4,7 @@
 
 body, html {
   font-family: var(--main-font);
-  color: var(--text-100);
+  color: var(--main-color);
   background-color: var(--neutral-200);
 }
 
@@ -36,10 +36,6 @@ pre:not(.default-positioning) {
 
 .demo-block {
   margin-bottom: 1rem;
-}
-
-.page-subtitle {
-
 }
 
 .no-overflow {
@@ -95,6 +91,8 @@ figure {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .columns {
@@ -107,4 +105,26 @@ figure {
 
 p {
   margin-top: 0;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.link-button {
+  display: inline-flex;
+  background-color: var(--fill-color);
+  padding: 12px 26px;
+  border-radius: 6px;
+  transition: all .3s;
+
+  &:hover {
+    filter: brightness(85%);
+  }
+}
+
+//text-editor styles
+
+.ql-align-center {
+  text-align: center;
 }

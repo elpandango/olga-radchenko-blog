@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import AddEditPost from "~/components/posts/AddEditPost/AddEditPost.vue";
+import AddEditPost from "~/components/Posts/AddEditPost/AddEditPost.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 
 definePageMeta({

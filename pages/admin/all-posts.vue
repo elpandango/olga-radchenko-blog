@@ -17,7 +17,7 @@
       </div>
     </template>
     <template v-else>
-      <Preloader height="calc(100vh - 400px)"/>
+      <AdminPreloader height="calc(100vh - 400px)"/>
     </template>
     <template v-if="isModalOpen">
       <Teleport to="body">
@@ -48,9 +48,9 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref} from "vue";
-import Preloader from "~/components/Preloader/index.vue";
+import AdminPreloader from "~/components/Preloader/AdminPreloader/AdminPreloader.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
-import BlogPost from "~/components/posts/BlogPost/BlogPost.vue";
+import BlogPost from "~/components/Posts/BlogPost/BlogPost.vue";
 import Modal from "~/components/Modals/Modal.vue";
 
 definePageMeta({
@@ -92,7 +92,7 @@ const fetchPosts = async (page) => {
     posts.value = data?.posts || [];
     isLoaded.value = true;
 
-    console.log('data?.posts: ', data?.posts);
+    console.log('data?.Posts: ', data?.posts);
   } catch (err) {
     console.log(err);
   }

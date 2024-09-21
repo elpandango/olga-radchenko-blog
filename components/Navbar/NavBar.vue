@@ -42,31 +42,31 @@
                class="text-black/60 transition duration-200 dark:text-white/60 lg:px-2"
               >Admin Panel
               </div>
-              <RouterLink
+              <NuxtLink
                to="/"
                class="bg-blue-500 hover:bg-blue-700 text-white ml-4 me-3 inline-block rounded px-2 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500">
                 To Main Site
-              </RouterLink>
+              </NuxtLink>
             </li>
           </ul>
 
           <div
            class="flex items-center"
            v-if="authorized">
-            <RouterLink
+            <NuxtLink
              @click="showMobileNav = false"
              class="me-3 inline-block rounded px-2 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500"
              active-class="is-active"
              to="/admin/all-posts">
               Home
-            </RouterLink>
-            <RouterLink
+            </NuxtLink>
+            <NuxtLink
              @click="showMobileNav = false"
              class="me-3 inline-block rounded px-2 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500"
              active-class="is-active"
              to="/admin/add-post">
               Add New Post
-            </RouterLink>
+            </NuxtLink>
             <button
              type="button"
              data-twe-ripple-init
@@ -115,7 +115,7 @@ const handleLogout = () => {
 
 <style lang="scss">
 .navbar {
-  background-color: #fff;
+  background-color: var(--secondary-color);
 
   .container {
     display: flex;
@@ -130,7 +130,7 @@ const handleLogout = () => {
 
   .navbar-item {
     &.is-active {
-      background-color: #fff;
+      background-color: var(--secondary-color);
       color: #000000;
     }
 

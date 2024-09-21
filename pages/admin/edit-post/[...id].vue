@@ -5,7 +5,7 @@
       <AddEditPost @save-post="handleSaveClicked"/>
     </template>
     <template v-else>
-      <Preloader height="calc(100vh - 400px)"/>
+      <AdminPreloader height="calc(100vh - 400px)"/>
     </template>
   </div>
 </template>
@@ -14,9 +14,9 @@
  setup
  lang="ts">
 import {reactive, ref} from "vue";
-import AddEditPost from "~/components/posts/AddEditPost/AddEditPost.vue";
+import AddEditPost from "~/components/Posts/AddEditPost/AddEditPost.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
-import Preloader from "~/components/Preloader/index.vue";
+import AdminPreloader from "~/components/Preloader/AdminPreloader/AdminPreloader.vue";
 import {useStorePosts} from "~/stores/storePosts";
 
 definePageMeta({
@@ -36,6 +36,7 @@ interface PostData {
 
 const isLoaded = ref(false);
 const postId = route.params.id[0];
+const postRepository = repositoryFactory.get('Post');
 
 onMounted(async () => {
   try {
@@ -50,8 +51,6 @@ onMounted(async () => {
     console.log(err);
   }
 });
-
-const postRepository = repositoryFactory.get('Post');
 
 const handleSaveClicked = async (data: PostData) => {
   const formData = new FormData();

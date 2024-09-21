@@ -8,7 +8,7 @@ export const getAllPosts = async (query: string, currentPage: number, perPage: n
     const maxContentLength = 200;
 
     if (query) {
-      // posts = await PostModel.find({
+      // Posts = await PostModel.find({
       //     type: query
       // })
       posts = await PostModel.find()

@@ -1,0 +1,70 @@
+.blog-post-wrap {
+  width: 33.33%;
+  padding: 10px;
+}
+.blog-post {
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    height: 250px;
+
+    .image {
+      border-radius: 0.5rem;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    img {
+      height: 250px;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: hsla(0, 0%, 98%, 0.15);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .content {
+    padding: 1rem 0;
+    color: #0E0E0EFF;
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .date {
+        margin-bottom: 0.5rem;
+        font-style: italic;
+      }
+    }
+
+    .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+  }
+}

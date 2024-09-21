@@ -15,7 +15,6 @@
     "@vueup/vue-quill": "^1.2.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
-    "bulma": "^1.0.2",
     "express": "^4.19.2",
     "formidable": "^3.5.1",
     "jsonwebtoken": "^9.0.2",
