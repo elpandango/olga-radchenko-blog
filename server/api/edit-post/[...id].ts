@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     const post = await PostModel.findById(id);
     const title = fields?.title as string;
     const content = fields?.content as string;
-    let imageUrl: string = post.imageUrl || 'images/empty-image.png';
+    let imageUrl: string = post.imageUrl || 'Images/empty-image.png';
 
     if (files?.image) {
       const file = files.image[0] as formidable.File;

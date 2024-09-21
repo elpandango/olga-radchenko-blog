@@ -33,7 +33,7 @@ export const updateSinglePost = defineEventHandler(async (event) => {
     let imageUrl: string;
 
     if (!files?.image) {
-      imageUrl = 'images/empty-image.png';
+      imageUrl = 'Images/empty-image.png';
     } else {
       const file = files.image[0] as formidable.File;
       imageUrl = `uploads/${path.basename(file.filepath)}`;

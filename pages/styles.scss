@@ -1,0 +1,47 @@
+
+
+.block-title {
+  font-size: 72px;
+  font-family: var(--secondary-font);
+  font-weight: 300;
+}
+
+.content-cols {
+  display: flex;
+
+  .col.text {
+    flex-basis: fit-content;
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .col.image {
+    width: 350px;
+    img {
+      height: 450px;
+    }
+  }
+}
+
+.about-text {
+  font-size: 26px;
+}
+
+.page-section {
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+.bg-gray {
+  background-color: var(--fill-color);
+}
+
+.blog-posts-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.site-posts {
+  margin-bottom: 80px;
+}

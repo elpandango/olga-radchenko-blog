@@ -30,6 +30,9 @@ export default defineNuxtConfig({
       Montserrat: {
         wght: [400, 700],
       },
+      CormorantInfant: {
+        wght: [300, 400, 700]
+      }
     }
   }], '@pinia/nuxt'],
 })

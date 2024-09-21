@@ -1,0 +1,31 @@
+.post-view {
+  padding-top: 105px;
+
+  .block-title {
+    margin-bottom: 24px;
+    font-size: 50px;
+  }
+
+  .poster {
+    margin-bottom: 26px;
+
+    img {
+      border-radius: 10px;
+      height: 650px;
+      object-fit: cover;
+    }
+  }
+
+  .post-header {
+    margin-bottom: 26px;
+  }
+
+  .post-content {
+    margin-bottom: 60px;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 50px;
+      font-family: var(--secondary-font);
+    }
+  }
+}
