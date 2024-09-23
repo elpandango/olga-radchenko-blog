@@ -9,13 +9,16 @@
        class="nav-links"
        :class="{ 'active': isMenuOpen }">
         <NuxtLink
-         to="/">Главная
+         to="/"
+         @click="closeMenu">Главная
         </NuxtLink>
         <NuxtLink
-         to="/blog">Все статьи
+         to="/blog"
+         @click="closeMenu">Все статьи
         </NuxtLink>
         <NuxtLink
-         to="/contact">Контакты
+         to="/contact"
+         @click="closeMenu">Контакты
         </NuxtLink>
       </nav>
 
@@ -37,6 +40,10 @@ const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
 }
 </script>
 
