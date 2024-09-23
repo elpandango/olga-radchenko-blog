@@ -57,7 +57,7 @@ interface PostData {
 const createdAt = ref('');
 const isLoaded = ref(false);
 const postId = route.params.id[0];
-const post = ref<{ title: string; description: string }>({title: '', description: ''});
+const post = ref<{ title: string; content: string, imageUrl: string}>({title: '', content: '', imageUrl: ''});
 const postRepository = repositoryFactory.get('Post');
 
 onMounted(async () => {
@@ -69,15 +69,15 @@ onMounted(async () => {
 
       useSeoMeta({
         title: `${post.value.title} - Ольга Радченко`,
-        description: post.value.description,
+        description: post.value.content.slice(0, 160),
         ogTitle: post.value.title,
-        ogDescription: post.value.description,
-        ogImage: post.value.image || '/images/olga-photo-1.webp',
+        ogDescription: post.value.content.slice(0, 300),
+        ogImage: post.value.imageUrl || '/images/olga-photo-1.webp',
         ogUrl: `${window.location.origin}${route.fullPath}`,
         twitterTitle: post.value.title,
-        twitterDescription: post.value.description,
-        twitterImage: post.value.image || '/images/olga-photo-1.webp',
-        twitterCard: 'summary'
+        twitterDescription: post.value.content.slice(0, 200),
+        twitterImage: post.value.imageUrl || '/images/olga-photo-1.webp',
+        twitterCard: 'summary_large_image'
       });
 
       setTimeout(() => {
