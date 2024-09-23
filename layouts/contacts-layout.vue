@@ -1,7 +1,9 @@
 <template>
   <div>
     <SiteHeader/>
-    <slot></slot>
+    <div style="flex: 1;">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

@@ -83,7 +83,7 @@ import {QuillEditor} from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import {useStorePosts} from "~/stores/storePosts";
 
-const apiUrl = import.meta.env.VITE_APP_API_URL;
+const apiUrl = process.client ? window.location.origin : 'http://localhost:3000';
 const emit = defineEmits(['save-post']);
 const formInputData = reactive({
   title: '',
