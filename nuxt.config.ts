@@ -35,4 +35,5 @@ export default defineNuxtConfig({
       }
     }
   }], '@pinia/nuxt'],
+  plugins: ['~/plugins/router.js'],
 })
