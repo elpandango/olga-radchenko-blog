@@ -119,7 +119,28 @@ p {
   transition: all .3s;
 
   &:hover {
-    filter: brightness(85%);
+    background-color: var(--hover-color);
+  }
+}
+
+.copyrights {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+
+  .container {
+    justify-content: flex-start;
+  }
+
+  span {
+    margin-left: 6px;
+    @media only screen and (max-width: 767px) {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      margin-left: 0;
+    }
   }
 }
 

@@ -3,9 +3,8 @@
     <div class="preloader">
       <svg
        class="loader"
-       width="450"
-       height="200"
        xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 450 200"
       >
         <text
          ref="textName"

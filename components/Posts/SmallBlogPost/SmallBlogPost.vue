@@ -2,7 +2,7 @@
   <div class="blog-post-wrap">
     <div class="blog-post">
       <div class="image-container">
-        <ImageWithPlaceholder
+        <AppImage
          :src="`/${post.imageUrl}`"
          cssClass="image"
          alt="Post image"
@@ -29,7 +29,7 @@
 
 <script setup>
 import {useFormatDate} from "~/use/useFormatDate.js";
-import ImageWithPlaceholder from "~/components/Images/ImageWithPlaceholder.vue";
+import AppImage from "~/components/Images/AppImage.vue";
 
 const props = defineProps({
   post: {

@@ -13,7 +13,7 @@
         <div class="col image">
           <img
            src="/images/olga-photo-1.webp"
-           alt="">
+           alt="Olga Radchenko photo">
         </div>
       </div>
     </div>

@@ -3,8 +3,14 @@
     <div class="feature">
       <div
        class="feature-billet">
-        <div class="bg-block"
-             :style="{ backgroundImage: `url(${imageUrl})`}"></div>
+
+        <AppImage
+         :src="`${imageUrl}`"
+         cssClass="bg-block"
+         alt="Feature image"
+         height="150"
+        />
+
         <div class="billet-content">
           <slot name="description"></slot>
         </div>
@@ -19,6 +25,8 @@
 <script
  setup
  lang="ts">
+
+import AppImage from "~/components/Images/AppImage.vue";
 
 const props = defineProps({
   imageUrl: {

@@ -4,7 +4,7 @@
      class="relative overflow-hidden bg-cover bg-no-repeat"
      data-twe-ripple-init
      data-twe-ripple-color="light">
-      <ImageWithPlaceholder
+      <AppImage
        :src="`/${post.imageUrl}`"
        cssClass="rounded-t-lg w-full object-cover"
        alt="Post image"
@@ -47,7 +47,7 @@
 
 <script setup>
 import {useFormatDate} from "~/use/useFormatDate.js";
-import ImageWithPlaceholder from "~/components/Images/ImageWithPlaceholder.vue";
+import AppImage from "~/components/Images/AppImage.vue";
 
 const emit = defineEmits(['delete-clicked']);
 

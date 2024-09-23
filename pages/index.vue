@@ -28,113 +28,9 @@
       </div>
     </section>
 
-    <section class="quotations page-section">
-      <div class="container">
-        <h2 class="block-title">Умные цитаты</h2>
-      </div>
-    </section>
+    <PhraseBlock :phrase="phraseData" />
 
-    <section class="faq page-section">
-      <div class="container">
-        <h2 class="block-title">Ответы на частые вопросы</h2>
-        <div class="faq-block">
-          <Accordion
-           height="32px">
-            <template v-slot:header>
-              <div class="link-text">Важные детали работы со мной</div>
-            </template>
-            <template v-slot:accordion-body>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam architecto aspernatur atque,
-                blanditiis debitis deleniti deserunt ducimus earum est exercitationem facere harum incidunt, ipsam
-                itaque labore nobis placeat qui quo recusandae reiciendis ullam ut? Blanditiis delectus in odit quos
-                reprehenderit sunt, tempore! Atque distinctio eius eveniet, nobis nostrum numquam quae quas sint!
-                Doloribus, id quas! A ab alias animi assumenda at aut autem, consectetur cum earum eos eveniet excepturi
-                explicabo facere fugiat, illo ipsam minus neque nesciunt nulla placeat porro possimus quia quis sunt
-                voluptate. Accusamus alias dolore facere, illum in molestias optio perspiciatis possimus quo, quos vel
-                voluptate.
-              </div>
-            </template>
-          </Accordion>
-
-          <Accordion
-           height="32px">
-            <template v-slot:header>
-              <div class="link-text">Сколько сессий мне понадобится?</div>
-            </template>
-            <template v-slot:accordion-body>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam architecto aspernatur atque,
-                blanditiis debitis deleniti deserunt ducimus earum est exercitationem facere harum incidunt, ipsam
-                itaque labore nobis placeat qui quo recusandae reiciendis ullam ut? Blanditiis delectus in odit quos
-                reprehenderit sunt, tempore! Atque distinctio eius eveniet, nobis nostrum numquam quae quas sint!
-                Doloribus, id quas! A ab alias animi assumenda at aut autem, consectetur cum earum eos eveniet excepturi
-                explicabo facere fugiat, illo ipsam minus neque nesciunt nulla placeat porro possimus quia quis sunt
-                voluptate. Accusamus alias dolore facere, illum in molestias optio perspiciatis possimus quo, quos vel
-                voluptate.
-              </div>
-            </template>
-          </Accordion>
-
-          <Accordion
-           height="32px">
-            <template v-slot:header>
-              <div class="link-text">Я не могу сформулировать свой запрос</div>
-            </template>
-            <template v-slot:accordion-body>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam architecto aspernatur atque,
-                blanditiis debitis deleniti deserunt ducimus earum est exercitationem facere harum incidunt, ipsam
-                itaque labore nobis placeat qui quo recusandae reiciendis ullam ut? Blanditiis delectus in odit quos
-                reprehenderit sunt, tempore! Atque distinctio eius eveniet, nobis nostrum numquam quae quas sint!
-                Doloribus, id quas! A ab alias animi assumenda at aut autem, consectetur cum earum eos eveniet excepturi
-                explicabo facere fugiat, illo ipsam minus neque nesciunt nulla placeat porro possimus quia quis sunt
-                voluptate. Accusamus alias dolore facere, illum in molestias optio perspiciatis possimus quo, quos vel
-                voluptate.
-              </div>
-            </template>
-          </Accordion>
-
-          <Accordion
-           height="32px">
-            <template v-slot:header>
-              <div class="link-text">Как проходит первая консультация?</div>
-            </template>
-            <template v-slot:accordion-body>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam architecto aspernatur atque,
-                blanditiis debitis deleniti deserunt ducimus earum est exercitationem facere harum incidunt, ipsam
-                itaque labore nobis placeat qui quo recusandae reiciendis ullam ut? Blanditiis delectus in odit quos
-                reprehenderit sunt, tempore! Atque distinctio eius eveniet, nobis nostrum numquam quae quas sint!
-                Doloribus, id quas! A ab alias animi assumenda at aut autem, consectetur cum earum eos eveniet excepturi
-                explicabo facere fugiat, illo ipsam minus neque nesciunt nulla placeat porro possimus quia quis sunt
-                voluptate. Accusamus alias dolore facere, illum in molestias optio perspiciatis possimus quo, quos vel
-                voluptate.
-              </div>
-            </template>
-          </Accordion>
-
-          <Accordion
-           height="32px">
-            <template v-slot:header>
-              <div class="link-text">С какими запросами я не работаю?</div>
-            </template>
-            <template v-slot:accordion-body>
-              <div class="description">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam architecto aspernatur atque,
-                blanditiis debitis deleniti deserunt ducimus earum est exercitationem facere harum incidunt, ipsam
-                itaque labore nobis placeat qui quo recusandae reiciendis ullam ut? Blanditiis delectus in odit quos
-                reprehenderit sunt, tempore! Atque distinctio eius eveniet, nobis nostrum numquam quae quas sint!
-                Doloribus, id quas! A ab alias animi assumenda at aut autem, consectetur cum earum eos eveniet excepturi
-                explicabo facere fugiat, illo ipsam minus neque nesciunt nulla placeat porro possimus quia quis sunt
-                voluptate. Accusamus alias dolore facere, illum in molestias optio perspiciatis possimus quo, quos vel
-                voluptate.
-              </div>
-            </template>
-          </Accordion>
-        </div>
-      </div>
-    </section>
+    <FaqBlock/>
 
   </div>
 </template>
@@ -149,17 +45,22 @@ import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vu
 import repositoryFactory from "~/repositories/repositoryFactory";
 import {onMounted, ref} from "vue";
 import SmallBlogPost from "~/components/Posts/SmallBlogPost/SmallBlogPost.vue";
+import FaqBlock from "~/components/PageComponents/IndexPage/FaqBlock/FaqBlock.vue";
+import PhraseBlock from "~/components/PageComponents/IndexPage/PhraseBlock/PhraseBlock.vue";
+
+const route = useRoute();
+const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';
 
 useSeoMeta({
-  title: 'Main page',
-  description: 'This is a main page',
-  ogTitle: 'Main page',
-  ogDescription: '[og:description]',
-  ogImage: '[og:image]',
-  ogUrl: '[og:url]',
-  twitterTitle: 'Main page',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
+  title: 'Главная - Ольга Радченко',
+  description: 'Ольга Радченко — психолог и консультант. Узнайте больше о её услугах и подходе к работе, чтобы найти поддержку в трудные моменты жизни.',
+  ogTitle: 'Главная - Ольга Радченко',
+  ogDescription: 'Ольга Радченко — профессиональный психолог, который помогает людям справиться с жизненными трудностями. Узнайте больше о её методах и услугах.',
+  ogImage: '/images/olga-photo-1.webp',
+  ogUrl: currentUrl,
+  twitterTitle: 'Главная - Ольга Радченко',
+  twitterDescription: 'Ольга Радченко — психолог, который помогает в решении жизненных трудностей. Откройте для себя её подход к психологической поддержке.',
+  twitterImage: '/images/olga-photo-1.webp',
   twitterCard: 'summary'
 });
 
@@ -167,23 +68,25 @@ definePageMeta({
   layout: 'site-default-layout',
 });
 
-// useHead({
-//   htmlAttrs: {
-//     lang: 'en'
-//   },
-//   link: [
-//     {
-//       rel: 'icon',
-//       type: 'image/png',
-//       href: '/favicon.png'
-//     }
-//   ]
-// });
-//
+useHead({
+  htmlAttrs: {
+    lang: 'ru'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png'
+    }
+  ]
+});
+
 
 const postRepository = repositoryFactory.get('Post');
+const phraseRepository = repositoryFactory.get('Phrase');
 const isLoaded = ref(false);
 const posts = ref([]);
+const phraseData = ref({});
 const postsResponse = ref({});
 
 const fetchPosts = async (page) => {
@@ -202,8 +105,18 @@ const fetchPosts = async (page) => {
   }
 };
 
+const fetchPhrase = async () => {
+  try {
+    const {phrase} = await phraseRepository.get();
+    phraseData.value = {...phrase};
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 onMounted(async () => {
   await fetchPosts();
+  await fetchPhrase();
 });
 
 </script>

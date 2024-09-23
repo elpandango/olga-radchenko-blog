@@ -7,7 +7,7 @@
      v-else>
 
       <div class="poster">
-        <ImageWithPlaceholder
+        <AppImage
          :src="`/${post.imageUrl}`"
          cssClass="image"
          :alt="post.title"
@@ -25,9 +25,7 @@
        class="post-content"
        v-html="post.content"
       ></div>
-
     </div>
-
 
   </div>
 </template>
@@ -39,7 +37,7 @@ import {ref} from "vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 import {useFormatDate} from "~/use/useFormatDate";
-import ImageWithPlaceholder from "~/components/Images/ImageWithPlaceholder.vue";
+import AppImage from "~/components/Images/AppImage.vue";
 
 definePageMeta({
   layout: 'site-default-layout',
@@ -59,7 +57,7 @@ interface PostData {
 const createdAt = ref('');
 const isLoaded = ref(false);
 const postId = route.params.id[0];
-const post = ref({});
+const post = ref<{ title: string; description: string }>({title: '', description: ''});
 const postRepository = repositoryFactory.get('Post');
 
 onMounted(async () => {
@@ -68,6 +66,19 @@ onMounted(async () => {
     if (data) {
       post.value = {...data.post};
       createdAt.value = useFormatDate(post.value.createdAt);
+
+      useSeoMeta({
+        title: `${post.value.title} - Ольга Радченко`,
+        description: post.value.description,
+        ogTitle: post.value.title,
+        ogDescription: post.value.description,
+        ogImage: post.value.image || '/images/olga-photo-1.webp',
+        ogUrl: `${window.location.origin}${route.fullPath}`,
+        twitterTitle: post.value.title,
+        twitterDescription: post.value.description,
+        twitterImage: post.value.image || '/images/olga-photo-1.webp',
+        twitterCard: 'summary'
+      });
 
       setTimeout(() => {
         isLoaded.value = true;

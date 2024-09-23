@@ -5,7 +5,7 @@
    :src="src"
    :height="height"
    :width="width"
-   alt="Image with Placeholder"/>
+   :alt="alt"/>
 </template>
 
 

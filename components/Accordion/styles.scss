@@ -2,15 +2,18 @@
   width: 100%;
   overflow: hidden;
   transition: height .3s;
+  border: 1px solid var(--main-color);
+  border-radius: 8px;
+  margin-bottom: 16px;
 
   .accordion-inner-content {
     position: relative;
   }
 
   .header-block {
-    padding: 0;
+    padding: 0 16px;
     display: flex;
-    height: 32px;
+    height: 52px;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
@@ -29,6 +32,7 @@
   }
 
   .link-text {
+    font-size: 18px;
     color: var(--neutral-900);
   }
 }
@@ -99,4 +103,8 @@
   transition: all .3s;
   border: 0 solid var(--neutral-500);
   border-radius: 0 0 4px 4px;
+}
+
+.description {
+  padding: 16px;
 }

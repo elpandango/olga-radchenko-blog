@@ -75,8 +75,8 @@ const gotoPage = (page: number) => {
   emits('page-changed', page);
 };
 
-onMounted(() => {
-  console.log('props.data: ', props.data);
-});
+// onMounted(() => {
+//   console.log('props.data: ', props.data);
+// });
 
 </script>

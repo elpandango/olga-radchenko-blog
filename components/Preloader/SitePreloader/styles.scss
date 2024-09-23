@@ -12,5 +12,12 @@
 }
 
 .loader {
+  width: 450px;
+  height: 200px;
   opacity: 0;
+
+  @media only screen and (max-width: 640px) {
+    width: 300px;
+    height: auto;
+  }
 }

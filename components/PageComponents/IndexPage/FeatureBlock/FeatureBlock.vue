@@ -1,7 +1,7 @@
 <template>
   <section class="features-block page-section">
     <div class="container">
-      <h2 class="block-title mar-auto mar-b-10">
+      <h2 class="block-title mar-auto mar-b-8">
         <span class="block text-left">С какими запросами</span>
         <span class="block text-right">я могу помочь?</span>
       </h2>

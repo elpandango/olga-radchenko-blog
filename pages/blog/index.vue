@@ -1,24 +1,26 @@
 <template>
-  <div class="posts">
-    <template v-if="isLoaded">
-      <BlogPost
-       mode="readonly"
-       v-for="post in filteredPosts"
-       :key="post.id"
-       :post="post"/>
+  <div class="container">
+    <div class="posts">
+      <template v-if="isLoaded">
+        <BlogPost
+         mode="readonly"
+         v-for="post in filteredPosts"
+         :key="post.id"
+         :post="post"/>
 
-      <Pagination v-if="postsResponse.lastPage > 1"
-                  @page-changed="pageChangeHandler"
-                  :data="postsResponse"/>
-    </template>
-    <template v-else-if="isLoaded && !filteredPosts?.length">
-      <div class="">
-        No posts here yet...
-      </div>
-    </template>
-    <template v-else>
-      <SitePreloader v-if="!isLoaded" />
-    </template>
+        <Pagination v-if="postsResponse.lastPage > 1"
+                    @page-changed="pageChangeHandler"
+                    :data="postsResponse"/>
+      </template>
+      <template v-else-if="isLoaded && !filteredPosts?.length">
+        <div class="">
+          No posts here yet...
+        </div>
+      </template>
+      <template v-else>
+        <SitePreloader v-if="!isLoaded" />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -31,10 +33,24 @@ import {computed, onMounted, ref} from "vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 
+const route = useRoute();
+const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';
+
+useSeoMeta({
+  title: 'Блог - Ольга Радченко',
+  description: 'Читайте статьи Ольги Радченко о психологии, личностном росте и способах справляться с жизненными трудностями.',
+  ogTitle: 'Блог - Ольга Радченко',
+  ogDescription: 'Узнайте больше о психологии и личностном росте в статьях Ольги Радченко. Советы и рекомендации для улучшения качества жизни.',
+  ogImage: '/images/olga-photo-1.webp',
+  ogUrl: currentUrl,
+  twitterTitle: 'Блог - Ольга Радченко',
+  twitterDescription: 'Читайте статьи Ольги Радченко, чтобы узнать больше о психологии, личностном развитии и преодолении трудностей.',
+  twitterImage: '/images/olga-photo-1.webp',
+  twitterCard: 'summary'
+});
+
 definePageMeta({
   layout: 'site-default-layout',
-  title: 'All posts page',
-  description: 'This is an all posts page',
 });
 
 const posts = ref([]);

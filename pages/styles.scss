@@ -1,9 +1,11 @@
-
-
 .block-title {
-  font-size: 72px;
+  font-size: 68px;
   font-family: var(--secondary-font);
   font-weight: 300;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 58px;
+  }
 }
 
 .content-cols {
@@ -44,4 +46,10 @@
 
 .site-posts {
   margin-bottom: 80px;
+}
+
+.faq {
+  .block-title {
+
+  }
 }

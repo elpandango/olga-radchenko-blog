@@ -29,11 +29,11 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all .3s;
+    transition: background-color .3s;
     margin: 0;
 
     &:hover {
-      filter: brightness(90%);
+      background-color: var(--hover-color);
     }
 
     @media only screen and (max-width: 991px) {
@@ -43,27 +43,6 @@
 
     @media only screen and (max-width: 767px) {
       margin: 0 auto;
-    }
-  }
-
-  .copyrights {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 10px;
-
-    .container {
-      justify-content: flex-start;
-    }
-
-    span {
-      margin-left: 6px;
-      @media only screen and (max-width: 767px) {
-        display: block;
-        width: 100%;
-        margin-top: 6px;
-        margin-left: 0;
-      }
     }
   }
 }

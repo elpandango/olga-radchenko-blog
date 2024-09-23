@@ -1,7 +1,7 @@
 <template>
   <section class="about-block bg-gray page-section">
     <div class="container">
-      <h2 class="block-title mar-b-4">Обо мне</h2>
+      <h2 class="block-title mar-b-8">Обо мне</h2>
       <p class="about-text">
         Добро пожаловать на сайт Ольги Радченко — опытного психолога с [X] лет практики.
         Я из города Одесса, Украина. Сейчас я живу в Германии и моя
