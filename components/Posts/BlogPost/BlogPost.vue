@@ -34,8 +34,6 @@
         </div>
       </div>
 
-      {{post}}
-
       <h5 class="mb-2 text-2xl font-bold leading-tight">{{ post.title }}</h5>
       <p
        class="mb-4 text-base"
