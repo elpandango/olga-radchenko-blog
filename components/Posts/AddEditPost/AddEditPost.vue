@@ -44,7 +44,7 @@
           <ClientOnly>
             <QuillEditor
              theme="snow"
-             toolbar="full"
+             :toolbar=tooltipOpts
              content-type="html"
              placeholder="Write content..."
              v-model:content="formInputData.content"
@@ -116,6 +116,22 @@ const handleSaveClicked = () => {
 
 
 const quill = ref(null);
+const tooltipOpts = [
+  ['bold', 'italic', 'underline', 'strike'],
+  ['blockquote', 'code-block'],
+  // [{ header: 1 }, { header: 2 }, { header: 3 }, { header: 4 }, { header: 5 }, { header: 6 }],
+  [{ list: 'ordered' }, { list: 'bullet' }],
+  [{ script: 'sub' }, { script: 'super' }],
+  [{ indent: '-1' }, { indent: '+1' }],
+  [{ direction: 'rtl' }],
+  [{ size: ['small', false, 'large', 'huge'] }],
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ color: [] }, { background: [] }],
+  [{ font: [] }],
+  [{ align: [] }],
+  ['link', 'video', 'image'],
+  ['clean'], // remove formatting button
+];
 
 const editorChangeHandler = (editorContent: any) => {
   formInputData.content = editorContent;
@@ -125,8 +141,6 @@ onMounted(() => {
   const storePosts = useStorePosts();
   const currentPost = storePosts.getCurrentPost;
   const {title, content, imageUrl} = currentPost;
-
-  console.log('currentPost: ', currentPost);
 
   formInputData.title = title;
   formInputData.content = content;

@@ -24,9 +24,31 @@
   .post-content {
     margin-bottom: 60px;
 
-    h1, h2, h3, h4, h5, h6 {
-      font-size: 50px;
+    h3, h4, h5, h6 {
+      font-size: 44px;
       font-family: var(--secondary-font);
+    }
+
+    .ql-align-right {
+      text-align: right;
+    }
+
+    .ql-align-center {
+      text-align: center;
+    }
+
+    .ql-video {
+      max-width: 900px;
+      height: 500px;
+      width: 100%;
+
+      @media only screen and (max-width: 991px) {
+        height: 350px;
+      }
+
+      @media only screen and (max-width: 640px) {
+        height: 250px;
+      }
     }
   }
 }
