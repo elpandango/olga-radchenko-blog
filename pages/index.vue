@@ -38,15 +38,15 @@
 <script
  setup
  lang="ts">
-import IntroBlock from "~/components/PageComponents/IndexPage/IntroBlock-2/IntroBlock.vue";
-import AboutBlock from "~/components/PageComponents/IndexPage/AboutBlock/AboutBlock.vue";
-import FeatureBlock from "~/components/PageComponents/IndexPage/FeatureBlock/FeatureBlock.vue";
-import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
-import repositoryFactory from "~/repositories/repositoryFactory";
 import {onMounted, ref} from "vue";
+import repositoryFactory from "~/repositories/repositoryFactory";
+import IntroBlock from "~/components/PageComponents/IntroBlock/IntroBlock.vue";
+import AboutBlock from "~/components/PageComponents/AboutBlock/AboutBlock.vue";
+import FeatureBlock from "~/components/PageComponents/FeatureBlock/FeatureBlock.vue";
+import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 import SmallBlogPost from "~/components/Posts/SmallBlogPost/SmallBlogPost.vue";
-import FaqBlock from "~/components/PageComponents/IndexPage/FaqBlock/FaqBlock.vue";
-import PhraseBlock from "~/components/PageComponents/IndexPage/PhraseBlock/PhraseBlock.vue";
+import FaqBlock from "~/components/PageComponents/FaqBlock/FaqBlock.vue";
+import PhraseBlock from "~/components/PageComponents/PhraseBlock/PhraseBlock.vue";
 
 const route = useRoute();
 const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';

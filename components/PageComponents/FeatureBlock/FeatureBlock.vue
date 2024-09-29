@@ -27,7 +27,7 @@ import features from "~/data/features";
 </script>
 
 <style
- src="../AboutBlock/styles.scss"
+ src="./styles.scss"
  lang="scss">
 
 </style>
