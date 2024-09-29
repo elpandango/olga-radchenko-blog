@@ -4,7 +4,7 @@
       <template v-if="isLoaded">
         <BlogPost
          mode="readonly"
-         v-for="post in filteredPosts"
+         v-for="post in posts"
          :key="post.id"
          :post="post"/>
 
@@ -12,7 +12,7 @@
                     @page-changed="pageChangeHandler"
                     :data="postsResponse"/>
       </template>
-      <template v-else-if="isLoaded && !filteredPosts?.length">
+      <template v-else-if="isLoaded && !posts?.length">
         <div class="">
           No posts here yet...
         </div>
@@ -56,7 +56,6 @@ definePageMeta({
 const posts = ref([]);
 const postsResponse = ref({});
 const user = ref({});
-const searchInputValue = ref('');
 const isLoaded = ref(false);
 
 const postRepository = repositoryFactory.get('Post');
@@ -78,20 +77,9 @@ onMounted(async () => {
   await fetchPosts();
 });
 
-const filteredPosts = computed(() => {
-  if (posts.value.length === 0) {
-    return [];
-  }
-  if (searchInputValue.value.length === 0) {
-    return posts.value;
-  }
-  return posts.value.filter(post => post?.content?.title?.toLowerCase()?.includes(searchInputValue.value.toLowerCase()));
-});
-
 const pageChangeHandler = async (page: number) => {
   await fetchPosts(`page=${page}`);
 }
-
 </script>
 
 <style lang="scss">

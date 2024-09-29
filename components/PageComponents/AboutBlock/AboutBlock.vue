@@ -19,7 +19,7 @@
 </script>
 
 <style
- src="../FeatureBlock/styles.scss"
+ src="./styles.scss"
  lang="scss">
 
 </style>

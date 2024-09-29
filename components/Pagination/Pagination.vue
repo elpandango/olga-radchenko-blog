@@ -40,8 +40,6 @@
  setup
  lang="ts">
 
-import {onMounted} from "vue";
-
 const emits = defineEmits(['page-changed']);
 
 const props = defineProps({
@@ -60,23 +58,15 @@ const props = defineProps({
   }
 });
 
-// Go to previous page
 const prevPage = () => {
   emits('page-changed', props.data.previousPage);
 };
 
-// Go to next page
 const nextPage = () => {
   emits('page-changed', props.data.nextPage);
 };
 
-// Go to specific page
 const gotoPage = (page: number) => {
   emits('page-changed', page);
 };
-
-// onMounted(() => {
-//   console.log('props.data: ', props.data);
-// });
-
 </script>

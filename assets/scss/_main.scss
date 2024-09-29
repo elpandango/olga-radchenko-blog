@@ -3,39 +3,13 @@
 }
 
 body, html {
-  font-family: var(--main-font);
+  font-family: var(--main-font), serif;
   color: var(--main-color);
   background-color: var(--neutral-200);
 }
 
-.page-content {
-  display: flex;
-  min-height: 100vh;
-}
-
-.container {
-  padding: 0 16px;
-}
-
-pre {
-  position: relative;
-}
-
 a {
   color: inherit;
-}
-
-pre:not(.default-positioning) {
-  code.language-html {
-    & > span.token.tag:first-child {
-      position: absolute;
-      left: 17px;
-    }
-  }
-}
-
-.demo-block {
-  margin-bottom: 1rem;
 }
 
 .no-overflow {
@@ -72,25 +46,11 @@ pre:not(.default-positioning) {
   position: absolute;
 }
 
-figure {
-  margin: 0;
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-}
-
-.token.tag {
-  background: transparent;
-  font-size: 16px;
-}
-
-
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   flex-wrap: wrap;
 }

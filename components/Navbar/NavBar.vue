@@ -118,7 +118,6 @@ const handleLogout = () => {
   background-color: var(--secondary-color);
 
   .container {
-    display: flex;
     min-height: 3.25rem;
     width: 100%;
   }
