@@ -31,7 +31,7 @@
 
       <img
        v-if="thumbnail"
-       :src="computedUrl"
+       :src="computedImageUrl"
        class="thumbnail mt-6"
        alt="Thumbnail">
     </div>
@@ -83,8 +83,8 @@ import {QuillEditor} from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import {useStorePosts} from "~/stores/storePosts";
 
-const apiUrl = process.client ? window.location.origin : 'http://localhost:3000';
 const emit = defineEmits(['save-post']);
+
 const formInputData = reactive({
   title: '',
   content: '',
@@ -130,7 +130,7 @@ const tooltipOpts = [
   [{ font: [] }],
   [{ align: [] }],
   ['link', 'video', 'image'],
-  ['clean'], // remove formatting button
+  ['clean'],
 ];
 
 const editorChangeHandler = (editorContent: any) => {
@@ -150,7 +150,9 @@ onMounted(() => {
 
 });
 
-const computedUrl = computed(() => {
+const apiUrl = window.location.origin;
+
+const computedImageUrl = computed(() => {
   return imageThumbLoaded.value ? thumbnail.value : `${apiUrl}/${thumbnail.value}`;
 });
 
