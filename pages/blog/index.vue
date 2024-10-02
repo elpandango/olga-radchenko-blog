@@ -29,7 +29,7 @@
  lang="ts">
 
 import BlogPost from "~/components/Posts/BlogPost/BlogPost.vue";
-import {computed, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 
