@@ -1,15 +1,7 @@
 .blog-post {
-  img {
-    height: 650px;
-
-    @media only screen and (max-width: 640px) {
-      height: 350px;
-    }
-  }
-
-  .post-title {
-    @media only screen and (max-width: 640px) {
-      width: 100%;
-    }
-  }
+  display: block;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 4rem;
 }
