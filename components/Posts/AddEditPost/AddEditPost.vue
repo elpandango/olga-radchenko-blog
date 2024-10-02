@@ -83,6 +83,13 @@ import {QuillEditor} from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import {useStorePosts} from "~/stores/storePosts";
 
+const props = defineProps({
+  mode: {
+    type: String,
+    default: 'add'
+  }
+});
+
 const emit = defineEmits(['save-post']);
 
 const formInputData = reactive({
@@ -120,15 +127,15 @@ const tooltipOpts = [
   ['bold', 'italic', 'underline', 'strike'],
   ['blockquote', 'code-block'],
   // [{ header: 1 }, { header: 2 }, { header: 3 }, { header: 4 }, { header: 5 }, { header: 6 }],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ script: 'sub' }, { script: 'super' }],
-  [{ indent: '-1' }, { indent: '+1' }],
-  [{ direction: 'rtl' }],
-  [{ size: ['small', false, 'large', 'huge'] }],
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ color: [] }, { background: [] }],
-  [{ font: [] }],
-  [{ align: [] }],
+  [{list: 'ordered'}, {list: 'bullet'}],
+  [{script: 'sub'}, {script: 'super'}],
+  [{indent: '-1'}, {indent: '+1'}],
+  [{direction: 'rtl'}],
+  [{size: ['small', false, 'large', 'huge']}],
+  [{header: [1, 2, 3, 4, 5, 6, false]}],
+  [{color: []}, {background: []}],
+  [{font: []}],
+  [{align: []}],
   ['link', 'video', 'image'],
   ['clean'],
 ];
@@ -138,19 +145,24 @@ const editorChangeHandler = (editorContent: any) => {
 };
 
 onMounted(() => {
-  const storePosts = useStorePosts();
-  const currentPost = storePosts.getCurrentPost;
-  const {title, content, imageUrl} = currentPost;
+  if (props.mode === 'edit') {
+    const storePosts = useStorePosts();
+    const currentPost = storePosts.getCurrentPost;
+    const {title, content, imageUrl} = currentPost;
 
-  formInputData.title = title;
-  formInputData.content = content;
-  formInputData.image = imageUrl;
-  thumbnail.value = imageUrl;
-  imageThumbLoaded.value = false;
-
+    formInputData.title = title;
+    formInputData.content = content;
+    formInputData.image = imageUrl;
+    thumbnail.value = imageUrl;
+    imageThumbLoaded.value = false;
+  }
 });
 
-const apiUrl = window.location.origin;
+let apiUrl = thumbnail.value;
+
+if (process.client) {
+  apiUrl = window.location.origin;
+}
 
 const computedImageUrl = computed(() => {
   return imageThumbLoaded.value ? thumbnail.value : `${apiUrl}/${thumbnail.value}`;

@@ -2,7 +2,9 @@
   <div class="add-edit-post py-6">
     <h1 class="text-3xl mb-4">Edit Post</h1>
     <template v-if="isLoaded">
-      <AddEditPost @save-post="handleSaveClicked"/>
+      <AddEditPost
+       mode="edit"
+       @save-post="handleSaveClicked"/>
     </template>
     <template v-else>
       <AdminPreloader height="calc(100vh - 400px)"/>
@@ -19,10 +21,14 @@ import repositoryFactory from "~/repositories/repositoryFactory";
 import AdminPreloader from "~/components/Preloader/AdminPreloader/AdminPreloader.vue";
 import {useStorePosts} from "~/stores/storePosts";
 
+useSeoMeta({
+  title: "Редактирование поста блога | Admin",
+  description: "Измените существующий пост блога. Обновите текст, заголовок и настройки SEO.",
+  keywords: "редактирование блога, правка поста, админка блога"
+});
+
 definePageMeta({
   layout: 'admin',
-  title: 'Edit post page',
-  description: 'This is an edit post page',
 });
 
 const router = useRouter();
