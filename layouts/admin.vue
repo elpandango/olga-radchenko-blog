@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
     <NavBar/>
     <div class="container">
       <slot></slot>

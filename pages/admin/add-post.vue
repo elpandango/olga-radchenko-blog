@@ -9,6 +9,12 @@
 import AddEditPost from "~/components/Posts/AddEditPost/AddEditPost.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 
+useSeoMeta({
+  title: "Создание нового поста блога | Admin",
+  description: "Создайте новый пост для блога. Укажите заголовок, содержание и мета-данные для SEO.",
+  keywords: "создание блога, новый пост, админка блога"
+});
+
 definePageMeta({
   layout: 'admin'
 });

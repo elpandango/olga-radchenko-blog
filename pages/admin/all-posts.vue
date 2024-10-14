@@ -53,14 +53,14 @@ import repositoryFactory from "~/repositories/repositoryFactory";
 import BlogPost from "~/components/Posts/BlogPost/BlogPost.vue";
 import Modal from "~/components/Modals/Modal.vue";
 
+useSeoMeta({
+  title: "Все посты блога | Admin",
+  description: "Просмотрите все посты блога. Упорядочивайте, редактируйте или удаляйте публикации.",
+  keywords: "все посты блога, управление блогом, админка блога"
+});
+
 definePageMeta({
   layout: 'admin',
-  middleware: [
-    function (to, from) {
-      // Custom inline middleware
-    },
-    // 'auth',
-  ],
 });
 
 const isModalOpen = ref(false);
@@ -92,7 +92,6 @@ const fetchPosts = async (page) => {
     posts.value = data?.posts || [];
     isLoaded.value = true;
 
-    console.log('data?.Posts: ', data?.posts);
   } catch (err) {
     console.log(err);
   }
