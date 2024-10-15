@@ -2,6 +2,8 @@ import { CustomError } from "~/server/interfaces/error";
 import { PostModel } from "~/server/models/postModel";
 import formidable from 'formidable';
 import path from 'path';
+import sharp from 'sharp';
+import fs from 'fs';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -23,20 +25,26 @@ export default defineEventHandler(async (event) => {
 
     const title = fields?.title as string;
     const content = fields?.content as string;
-    let imageUrl: string;
+    let imageUrl: string = post.imageUrl || 'images/empty-image.png';
 
-    if (!files?.image) {
-      imageUrl = 'images/empty-image.png';
-    } else {
+    if (files?.image) {
       const file = files.image[0] as formidable.File;
-      imageUrl = `uploads/${path.basename(file.filepath)}`;
+      const originalFilePath = file.filepath;
+      const optimizedFilePath = path.join(path.dirname(originalFilePath), `optimized-${path.basename(originalFilePath)}`);
+
+      await sharp(originalFilePath)
+        .resize(800)
+        .toFile(optimizedFilePath);
+
+      fs.unlinkSync(originalFilePath);
+
+      imageUrl = `uploads/${path.basename(optimizedFilePath)}`;
     }
 
     const post = new PostModel({
       title: title[0],
       content: content[0],
       imageUrl,
-      // creator: 'some-user-id', //TODO Заменить на реальный ID пользователя
     });
 
     await post.save();
@@ -47,7 +55,7 @@ export default defineEventHandler(async (event) => {
       post: post,
     };
   } catch (err: any) {
-    console.error('Server error:', err); // Вывод ошибок
+    console.error('Server error:', err);
     const error: CustomError = new Error('Internal server error.');
     error.statusCode = 500;
     return error;

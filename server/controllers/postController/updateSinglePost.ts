@@ -25,15 +25,12 @@ export const updateSinglePost = defineEventHandler(async (event) => {
     });
 
     const post = await PostModel.findById(id);
-
-    console.log('post: ', post);
-
     const title = fields?.title as string;
     const content = fields?.content as string;
     let imageUrl: string;
 
     if (!files?.image) {
-      imageUrl = 'Images/empty-image.png';
+      imageUrl = 'images/empty-image.png';
     } else {
       const file = files.image[0] as formidable.File;
       imageUrl = `uploads/${path.basename(file.filepath)}`;
@@ -44,9 +41,7 @@ export const updateSinglePost = defineEventHandler(async (event) => {
     post.title = title[0];
     post.content = content[0];
     post.imageUrl = imageUrl;
-    const result = await post!.save();
-
-    // console.log('Post object:', post);
+    await post!.save();
 
     return {
       status: 201,
