@@ -1,24 +1,25 @@
 <template>
   <div class="container">
     <div class="posts">
-      <template v-if="isLoaded">
+      <template v-if="arePostsLoaded">
         <BlogPost
          mode="readonly"
          v-for="post in posts"
          :key="post.id"
          :post="post"/>
 
-        <Pagination v-if="postsResponse.lastPage > 1"
-                    @page-changed="pageChangeHandler"
-                    :data="postsResponse"/>
+        <Pagination
+         v-if="postsResponse.lastPage > 1"
+         @page-changed="pageChangeHandler"
+         :data="postsResponse"/>
       </template>
-      <template v-else-if="isLoaded && !posts?.length">
+      <template v-else-if="arePostsLoaded && !posts?.length">
         <div class="">
           No posts here yet...
         </div>
       </template>
       <template v-else>
-        <SitePreloader v-if="!isLoaded" />
+        <SitePreloader v-if="!arePostsLoaded"/>
       </template>
     </div>
   </div>
@@ -34,7 +35,7 @@ import repositoryFactory from "~/repositories/repositoryFactory";
 import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 
 const route = useRoute();
-const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';
+const currentUrl = computed(() => process.client ? `${window.location.origin}${route.fullPath}` : '');
 
 useSeoMeta({
   title: 'Блог - Ольга Радченко',
@@ -56,17 +57,19 @@ definePageMeta({
 const posts = ref([]);
 const postsResponse = ref({});
 const user = ref({});
-const isLoaded = ref(false);
+const arePostsLoaded = ref(false);
 
 const postRepository = repositoryFactory.get('Post');
-const fetchPosts = async (page) => {
+const fetchPosts = async (page = 1) => {
   try {
-    isLoaded.value = false;
+    arePostsLoaded.value = false;
     const data = await postRepository.get(page);
     postsResponse.value = {...data};
     posts.value = data?.posts || [];
+
+    //SVG preloader animation
     setTimeout(() => {
-      isLoaded.value = true;
+      arePostsLoaded.value = true;
     }, 1300);
   } catch (err) {
     console.log(err);

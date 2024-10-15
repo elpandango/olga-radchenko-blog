@@ -1,30 +1,33 @@
 <template>
-  <div
-   class="fixed inset-0 flex items-center justify-center"
-   @keydown.esc="closeDialog">
-    <div class="fixed inset-0 bg-black bg-opacity-50"
-         @click="closeModal"></div>
-    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg z-10">
-      <div class="flex items-center justify-between p-4 border-b border-gray-200">
-        <h2 class="text-lg font-semibold">
-          <slot name="header"></slot>
-        </h2>
-        <button
-         @click="closeModal"
-         class="text-gray-500 hover:text-gray-700">
-          &times;
-        </button>
-      </div>
-      <div class="p-4">
-        <slot name="body"></slot>
-      </div>
-      <div class="flex justify-end p-4 border-t border-gray-200">
-        <div class="space-x-2">
-          <slot name="footer"></slot>
+  <Teleport to="body">
+    <div
+     class="fixed inset-0 flex items-center justify-center"
+     @keydown.esc="closeDialog">
+      <div
+       class="fixed inset-0 bg-black bg-opacity-50"
+       @click="closeModal"></div>
+      <div class="bg-white rounded-lg shadow-lg w-full max-w-lg z-10">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200">
+          <h2 class="text-lg font-semibold">
+            <slot name="header"></slot>
+          </h2>
+          <button
+           @click="closeModal"
+           class="text-gray-500 hover:text-gray-700">
+            &times;
+          </button>
+        </div>
+        <div class="p-4">
+          <slot name="body"></slot>
+        </div>
+        <div class="flex justify-end p-4 border-t border-gray-200">
+          <div class="space-x-2">
+            <slot name="footer"></slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script
@@ -49,11 +52,6 @@ const openModal = () => {
 
 const closeModal = () => {
   emit('update:modelValue', false);
-
-  if (dialog.value) {
-    // dialog.value.close();
-    // emit('update:modelValue', false);
-  }
 };
 
 const handleEscape = (event) => {

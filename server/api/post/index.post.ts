@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     let imageUrl: string;
 
     if (!files?.image) {
-      imageUrl = 'Images/empty-image.png';
+      imageUrl = 'images/empty-image.png';
     } else {
       const file = files.image[0] as formidable.File;
       imageUrl = `uploads/${path.basename(file.filepath)}`;
