@@ -80,6 +80,7 @@ onMounted(async () => {
         twitterCard: 'summary_large_image'
       });
 
+      //SVG preloader animation
       setTimeout(() => {
         isLoaded.value = true;
       }, 1300);

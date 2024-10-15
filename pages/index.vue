@@ -49,7 +49,7 @@ import FaqBlock from "~/components/PageComponents/FaqBlock/FaqBlock.vue";
 import PhraseBlock from "~/components/PageComponents/PhraseBlock/PhraseBlock.vue";
 
 const route = useRoute();
-const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';
+const currentUrl = computed(() => process.client ? `${window.location.origin}${route.fullPath}` : '');
 
 useSeoMeta({
   title: 'Главная - Ольга Радченко',
@@ -89,6 +89,7 @@ const fetchPosts = async (page) => {
     postsResponse.value = {...data};
     posts.value = data?.posts || [];
 
+    //SVG preloader animation
     setTimeout(() => {
       isLoaded.value = true;
     }, 1300);

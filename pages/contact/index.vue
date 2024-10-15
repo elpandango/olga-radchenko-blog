@@ -50,7 +50,7 @@ import {onMounted, ref} from "vue";
 import SitePreloader from "~/components/Preloader/SitePreloader/SitePreloader.vue";
 
 const route = useRoute();
-const currentUrl = process.client ? `${window.location.origin}${route.fullPath}` : '';
+const currentUrl = computed(() => process.client ? `${window.location.origin}${route.fullPath}` : '');
 
 definePageMeta({
   layout: 'contacts-layout',
@@ -72,6 +72,7 @@ useSeoMeta({
 const isLoaded = ref(false);
 
 onMounted(async () => {
+  //SVG preloader animation
   setTimeout(() => {
     isLoaded.value = true;
   }, 1300);
@@ -79,64 +80,4 @@ onMounted(async () => {
 
 </script>
 
-<style lang="scss">
-.contact-page {
-  padding-top: 105px;
-
-  .contact-title {
-    max-width: 750px;
-    width: 100%;
-
-    @media only screen and (max-width: 767px) {
-      max-width: 100%;
-    }
-
-    .block.text-right {
-      text-align: left;
-    }
-  }
-}
-
-.service-block {
-  display: flex;
-  justify-content: space-between;
-
-  @media only screen and (max-width: 767px) {
-    flex-wrap: wrap;
-  }
-}
-
-.service-col {
-  width: calc(50% - 10px);
-  min-height: 350px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 26px;
-  border: 1px solid var(--fill-color);
-  border-radius: 12px;
-
-  @media only screen and (max-width: 767px) {
-    width: 100%;
-    margin-bottom: 24px;
-  }
-
-  .service-title {
-    font-size: 28px;
-    margin-bottom: 16px;
-  }
-
-  .service-description {
-    text-align: justify;
-    font-size: 20px;
-  }
-
-  .service-duration {
-    margin-bottom: 12px;
-  }
-  .price {
-    font-size: 22px;
-  }
-}
-</style>
+<style lang="scss" src="./styles.scss"></style>

@@ -1,17 +1,18 @@
 <template>
   <div class="posts">
-    <template v-if="isLoaded">
+    <template v-if="arePostsLoaded">
       <BlogPost
        v-for="post in filteredPosts"
        :key="post.id"
        :post="post"
        @delete-clicked="handlePostDelete"/>
 
-      <Pagination v-if="postsResponse.lastPage > 1"
-                  @page-changed="pageChangeHandler"
-                  :data="postsResponse"/>
+      <Pagination
+       v-if="postsResponse.lastPage > 1"
+       @page-changed="handlePageChange"
+       :data="postsResponse"/>
     </template>
-    <template v-else-if="isLoaded && !filteredPosts?.length">
+    <template v-else-if="arePostsLoaded && !filteredPosts?.length">
       <div class="">
         No posts here yet...
       </div>
@@ -20,38 +21,23 @@
       <AdminPreloader height="calc(100vh - 400px)"/>
     </template>
     <template v-if="isModalOpen">
-      <Teleport to="body">
-        <Modal v-model="isModalOpen">
-          <template v-slot:header>
-            Deleting the Post
-          </template>
-          <template v-slot:body>
-            <p>Are you sure you want to delete this post?</p>
-          </template>
-          <template v-slot:footer>
-            <button
-             class="px-4 py-2 bg-stone-500 hover:bg-stone-700 transition-bg-color duration-200 text-white rounded"
-             @click="isModalOpen = false">
-              Cancel
-            </button>
-            <button
-             class="px-4 py-2 bg-red-500 hover:bg-red-700 transition-bg-color duration-200 text-white rounded focus:outline-none"
-             @click="handleDeleteConfirmed">
-              Delete
-            </button>
-          </template>
-        </Modal>
-      </Teleport>
+      <ConfirmDeleteModal
+       :isOpen="isModalOpen"
+       @confirm="handleDeleteConfirmed"
+       @update:isOpen="isModalOpen = $event"
+      />
     </template>
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+ setup
+ lang="ts">
 import {computed, onMounted, ref} from "vue";
 import AdminPreloader from "~/components/Preloader/AdminPreloader/AdminPreloader.vue";
 import repositoryFactory from "~/repositories/repositoryFactory";
 import BlogPost from "~/components/Posts/BlogPost/BlogPost.vue";
-import Modal from "~/components/Modals/Modal.vue";
+import ConfirmDeleteModal from "~/components/Modals/ConfirmDeleteModal.vue";
 
 useSeoMeta({
   title: "Все посты блога | Admin",
@@ -69,7 +55,7 @@ const posts = ref([]);
 const postsResponse = ref({});
 const user = ref({});
 const searchInputValue = ref('');
-const isLoaded = ref(false);
+const arePostsLoaded = ref(false);
 
 const postRepository = repositoryFactory.get('Post');
 const userRepository = repositoryFactory.get('User');
@@ -86,11 +72,11 @@ const fetchUser = async () => {
 
 const fetchPosts = async (page) => {
   try {
-    isLoaded.value = false;
+    arePostsLoaded.value = false;
     const data = await postRepository.get(page);
     postsResponse.value = {...data};
     posts.value = data?.posts || [];
-    isLoaded.value = true;
+    arePostsLoaded.value = true;
 
   } catch (err) {
     console.log(err);
@@ -98,8 +84,7 @@ const fetchPosts = async (page) => {
 };
 
 onMounted(async () => {
-  await fetchUser();
-  await fetchPosts();
+  await Promise.all([fetchUser(), fetchPosts()]);
 });
 
 const filteredPosts = computed(() => {
@@ -123,7 +108,7 @@ const handleDeleteConfirmed = async () => {
   isModalOpen.value = false;
 };
 
-const pageChangeHandler = async (page: number) => {
+const handlePageChange = async (page: number) => {
   await fetchPosts(`page=${page}`);
 }
 </script>
