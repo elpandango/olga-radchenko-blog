@@ -2,7 +2,7 @@
   <Teleport to="body">
     <div
      class="fixed inset-0 flex items-center justify-center"
-     @keydown.esc="closeDialog">
+     @keydown.esc="closeModal">
       <div
        class="fixed inset-0 bg-black bg-opacity-50"
        @click="closeModal"></div>
